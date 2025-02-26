@@ -12,6 +12,7 @@ int main()
     insert(list, 3);
     insert(list, 5);
     insert(list, 7);
+
     insert(list2, 2);
     insert(list2, 4);
     insert(list2, 6);
@@ -20,6 +21,7 @@ int main()
     
     t_ordered_list *list3 = merge(list, list2);
     print_ordered_list(list);
-    print_ordered_list(list2);
-    print_ordered_list(list3);
+    printf("%d\n", size(list));
+    printf("%d\n", search(list, 3));
+
 }

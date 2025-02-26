@@ -41,12 +41,11 @@ int insert(t_ordered_list* list, int value){
     if(value > list->items[list->n-1])
         list->items[list->n++] = value;
     else{
-        for(int a = 0; a < list->n; a++){
-            if(value > list->items[a]){
-                for(int b = list->n; b > a; b--){
-                    list->items[b] = list->items[b-1];                    
-                }
-                list->items[a] = value;
+        for(int b = list->n; b > 0; b--){
+            if(value < list->items[b]){
+                list->items[b] = list->items[b-1];                   
+            }else{
+                list->items[b] = value;
                 list->n++;
                 break; 
             }
