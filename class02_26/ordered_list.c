@@ -37,21 +37,27 @@ int insert(t_ordered_list* list, int value){
         list->items = realloc(list->items, list->max+1 * sizeof(int));
         list->max++;
     }
-
-    if(value > list->items[list->n-1])
-        list->items[list->n++] = value;
-    else{
-        for(int b = list->n; b > 0; b--){
-            if(value < list->items[b]){
-                list->items[b] = list->items[b-1];                   
-            }else{
-                list->items[b] = value;
-                list->n++;
-                break; 
-            }
-        }
+    if(list->n == 0){
+        list->items[0] = value;
+        list->n++;
+        return 1;
     }
+
+    if(value > list->items[list->n-1]){
+        list->items[list->n] = value;
+        list->n++;
+        return 1;
+    }
+    int posicao = list->n;
+    for(int i = list->n; value < list->items[i-1] && i > 0; i--){
+        list->items[i] = list->items[i-1];
+        posicao--;
+    }
+    list->items[posicao] = value;
+    list->n++;
+    return 1;
 }
+
 
 int search(t_ordered_list* list, int value){
     for(int i = 0; i < list->n; i++){
